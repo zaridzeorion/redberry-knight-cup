@@ -1,4 +1,5 @@
 import React from 'react'
+import Navigation from './Navigation'
 
 const Experience = () => {
 
@@ -52,6 +53,8 @@ const Experience = () => {
 
                 <input type="radio" value="no" />
                 <label>No</label><br />
+
+                <Navigation />
             </div>
         </div>
     )

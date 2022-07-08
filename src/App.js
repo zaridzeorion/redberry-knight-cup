@@ -21,7 +21,7 @@ function App() {
         <Route path="/personal-information" element={<PersonalInformation />} />
 
         {isRouteOpen.experience && <Route path="/experience" element={<Experience />} />}
-        {isRouteOpen.onboardingCompleted && <Route path="/completed" element={<Completed />} />}
+        {isRouteOpen.onboardingCompleted && <Route path="/onboardingCompleted" element={<Completed />} />}
       </Routes>
     </BrowserRouter>
   );

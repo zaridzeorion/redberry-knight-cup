@@ -1,4 +1,5 @@
 import React from 'react'
+import Navigation from './Navigation'
 
 const PersonalInformation = () => {
     return (
@@ -32,6 +33,8 @@ const PersonalInformation = () => {
                 <input type="tel" placeholder="Phone number" /> <br />
                 <input type="date" placeholder="Date of birth" />
 
+
+                <Navigation />
             </div>
         </div>
     )

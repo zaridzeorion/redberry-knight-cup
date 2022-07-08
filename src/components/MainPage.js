@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
     return (
@@ -18,7 +19,9 @@ const MainPage = () => {
 
                 <br />
 
-                <button>Get Started <img alt="Right Arrow" /></button>
+                <Link to="personal-information">
+                    <button>Get Started <img alt="Right Arrow" /></button>
+                </Link>
             </div>
 
         </div>
