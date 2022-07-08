@@ -8,14 +8,20 @@ import Completed from './components/Completed';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 function App() {
+  let isRouteOpen = useSelector(state => state.routesOpenClose)
+
   return (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<MainPage />} />
+
         <Route path="/personal-information" element={<PersonalInformation />} />
-        <Route path="/experience" element={<Experience />} />
-        <Route path="/completed" element={<Completed />} />
+
+        {isRouteOpen.experience && <Route path="/experience" element={<Experience />} />}
+        {isRouteOpen.onboardingCompleted && <Route path="/completed" element={<Completed />} />}
       </Routes>
     </BrowserRouter>
   );
