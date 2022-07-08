@@ -61,6 +61,8 @@ const PersonalInformation = () => {
         validatePage(applicant, dispatch);
     }, [applicant]);
 
+    let today = new Date().toLocaleDateString('en-ca')
+
     return (
         <div>
             <div>
@@ -90,7 +92,7 @@ const PersonalInformation = () => {
                 <input onChange={(e) => handleName(e, dispatch)} value={applicant.name} type="text" placeholder="Name" /> <br />
                 <input onChange={(e) => handleEmail(e, dispatch)} value={applicant.email} type="email" placeholder="Email address" /> <br />
                 <input onChange={(e) => handlePhone(e, dispatch)} value={applicant.phone} type="number" placeholder="Phone number" /> <br />
-                <input onChange={(e) => handleBirthDate(e, dispatch)} value={applicant.birthDate} type="date" placeholder="Date of birth" />
+                <input onChange={(e) => handleBirthDate(e, dispatch)} value={applicant.birthDate} type="date" placeholder="Date of birth" min="1900-01-01" max={today} />
 
                 <Navigation />
             </div>
