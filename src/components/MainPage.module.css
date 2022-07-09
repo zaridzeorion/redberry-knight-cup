@@ -1,0 +1,45 @@
+.RightSide {
+    background-color: #FD5334;
+}
+
+.Title {
+    padding-top: 260px;
+    padding-left: 80px;
+    font-size: 80px;
+    color: white;
+}
+
+.SmallText {
+    font-size: 20px;
+    color: #212529;
+    position: absolute;
+    top: 32%;
+    left: 81.1%;
+}
+
+.Button {
+    position: relative;
+    left: 90px;
+    top: 25px;
+
+    color: white;
+    background-color: #212529;
+
+    border: 0;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    line-height: 27px;
+
+    padding: 10px 20px;
+
+    display: flex;
+
+}
+
+.GetStarted {
+    margin-right: 10px;
+}

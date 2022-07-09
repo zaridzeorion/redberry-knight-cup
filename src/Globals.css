@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Open+Sans&display=swap');
+
+/* IMAGES  */
+.ChessImageMain {
+  background: url('image/MainPage-Left.png');
+  background-size: 100%;
+
+}
+
+.ChessImagePersonal {}
+
+.ChessImageExperience {}
+
+.ChessImageCompleted {}
+
+
+.Nunito {
+  font-family: 'Nunito', sans-serif;
+}
+
+.OpenSans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Wrapper {
+  display: flex;
+}
+
+.LeftSide,
+.RightSide {
+  height: 100vh;
+  width: 50%;
+}
+
+.LeftHeader {
+  background-color: #7025FB;
+  color: white;
+  height: 84px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.LeftHeaderContent {
+  margin-left: 60px;
+}
