@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Navigation from './Navigation'
+import { useFetch } from 'use-http'
 
 const Experience = () => {
+    const [players, setPlayers] = useState([])
+
+    const url = 'https://chess-tournament-api.devtest.ge/api/grandmasters'
+    const { get, response } = useFetch(url)
+
+    useEffect(() => { loadPlayers() }, [])
+
+    const loadPlayers = async () => {
+        const players = await get('/')
+        if (response.ok) setPlayers(players)
+    }
 
     return (
         <div>
@@ -38,14 +50,14 @@ const Experience = () => {
                 </select>
                 <br />
 
-
                 <label for="character">Choose your character</label>
                 <br />
                 <select name="character" id="character">
-                    <option>NAN</option>
+                    {players && players.map((player, id) => (
+                        <option key={id}>{player.name}</option>
+                    ))}
                 </select>
                 <br />
-
 
                 <p>Have you participated in the Redberry Championship?</p>
                 <input type="radio" value="yes" />
