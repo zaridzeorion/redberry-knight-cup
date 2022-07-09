@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Navigation from './Navigation'
 import { useFetch } from 'use-http'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { setLevelOfKnowledge, setCharacter, setChampionshipParticipation } from '../store/slices/applicantSlice'
+import { openOnboardingRoute, closeOnboardingRoute } from '../store/slices/routesOpenClose'
 
 const Experience = () => {
     const [players, setPlayers] = useState([])
@@ -14,6 +18,35 @@ const Experience = () => {
         const players = await get('/')
         if (response.ok) setPlayers(players)
     }
+
+    const dispatch = useDispatch();
+    const applicant = useSelector((state) => state.applicant);
+
+    const handleParticipationChange = (e) => {
+        let checked = e.target.value
+
+        if (checked === "yes") dispatch(setChampionshipParticipation(true))
+        if (checked === "no") dispatch(setChampionshipParticipation(false))
+    }
+
+    const handleKnowledgeChange = (e) => {
+        let levelOfKnowledge = e.target.value
+        dispatch(setLevelOfKnowledge(levelOfKnowledge))
+    }
+
+    const handleCharacterChange = (e) => {
+        let character = e.target.value
+        dispatch(setCharacter(character))
+    }
+
+    useEffect(() => {
+        applicant.levelOfKnowledge &&
+            applicant.character &&
+            applicant.championshipParticipation !== null ?
+            dispatch(openOnboardingRoute()) :
+            dispatch(closeOnboardingRoute())
+
+    }, [applicant])
 
     return (
         <div>
@@ -40,19 +73,17 @@ const Experience = () => {
                 <h2>Chess experience</h2>
                 <h6>This Is Basic Information Fields</h6>
 
-
-                <label for="knowledge">level of knowledge</label>
                 <br />
-                <select name="knowledge" id="knowledge">
+                <select onChange={(e) => handleKnowledgeChange(e)} name="knowledge" id="knowledge">
+                    <option disabled selected value>Level of knowledge</option>
                     <option value="beginner">Beginner</option>
                     <option value="intermediate">Intermediate</option>
                     <option value="professional">Professional</option>
                 </select>
                 <br />
 
-                <label for="character">Choose your character</label>
-                <br />
-                <select name="character" id="character">
+                <select onChange={(e) => handleCharacterChange(e)} name="character" id="character">
+                    <option disabled selected value>Choose your character</option>
                     {players && players.map((player, id) => (
                         <option key={id}>{player.name}</option>
                     ))}
@@ -60,10 +91,10 @@ const Experience = () => {
                 <br />
 
                 <p>Have you participated in the Redberry Championship?</p>
-                <input type="radio" value="yes" />
+                <input checked={applicant.championshipParticipation} onClick={(e) => handleParticipationChange(e)} type="radio" value="yes" />
                 <label>Yes</label>
 
-                <input type="radio" value="no" />
+                <input checked={applicant.championshipParticipation === false} onClick={(e) => handleParticipationChange(e)} type="radio" value="no" />
                 <label>No</label><br />
 
                 <Navigation />

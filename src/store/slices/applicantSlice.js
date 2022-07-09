@@ -7,7 +7,7 @@ let initialState = {
     birthDate: "",
     levelOfKnowledge: "",
     character: "",
-    championshipParticipation: "",
+    championshipParticipation: null,
 };
 
 const applicantSlice = createSlice({
