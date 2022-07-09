@@ -11,6 +11,7 @@ import {
 } from "../store/slices/applicantSlice";
 
 import { openExperienceRoute, closeExperienceRoute } from "../store/slices/routesOpenClose";
+import SideHeader from './SideHeader';
 
 const PersonalInformation = () => {
     const dispatch = useDispatch();
@@ -82,9 +83,7 @@ const PersonalInformation = () => {
 
 
             <div>
-
-                <h4>Start Creating Your Account</h4>
-                <hr />
+                <SideHeader />
 
                 <h2>Personal Information</h2>
                 <h6>This Is Basic Information Fields</h6>
