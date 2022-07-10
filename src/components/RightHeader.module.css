@@ -42,7 +42,16 @@
     left: 57.75px;
 }
 
+.Checked {
+    width: 40px;
+    height: 25px;
+    position: relative;
+    left: 57.75px;
+}
+
 .Two {
     position: relative;
     left: 44.5px;
+    background-color: #E5E6E8;
+
 }
