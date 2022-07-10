@@ -42,7 +42,7 @@ const PersonalInformation = () => {
     };
 
     const validateEmail = (email) => {
-        const re = /(?:@redberry.com)/
+        const re = /(?:@redberry.ge)/
 
         return re.test(email);
     };
