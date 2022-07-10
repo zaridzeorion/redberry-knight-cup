@@ -5,8 +5,8 @@ let initialState = {
     email: "",
     phone: "",
     birthDate: "",
-    levelOfKnowledge: "",
-    character: "",
+    levelOfKnowledge: "Level of knowledge",
+    character: "Choose your character",
     championshipParticipation: null,
 };
 

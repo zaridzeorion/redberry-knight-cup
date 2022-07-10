@@ -6,7 +6,22 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setLevelOfKnowledge, setCharacter, setChampionshipParticipation } from '../store/slices/applicantSlice'
 import { openOnboardingRoute, closeOnboardingRoute } from '../store/slices/routesOpenClose'
 
+import KnightLogo from '../image/KnightLogo.png'
+
+import Styles from './Experience.module.css'
+import RightHeader from './RightHeader'
+
 const Experience = () => {
+    const dispatch = useDispatch();
+    const applicant = useSelector((state) => state.applicant);
+
+    const [isCharacterDropdownOpen, setIsCharacterDropdownOpen] = useState(false)
+    const [currentCharacter, setCurrentCharacter] = useState(applicant.character)
+
+
+    const [isKnowledgeDropdownOpen, setIsKnowledgeDropdownOpen] = useState(false)
+    const [knowledgeLevel, setKnowledgeLevel] = useState(applicant.levelOfKnowledge)
+
     const [players, setPlayers] = useState([])
 
     const url = 'https://chess-tournament-api.devtest.ge/api/grandmasters'
@@ -19,8 +34,6 @@ const Experience = () => {
         if (response.ok) setPlayers(players)
     }
 
-    const dispatch = useDispatch();
-    const applicant = useSelector((state) => state.applicant);
 
     const handleParticipationChange = (e) => {
         let checked = e.target.value
@@ -34,9 +47,10 @@ const Experience = () => {
         dispatch(setLevelOfKnowledge(levelOfKnowledge))
     }
 
-    const handleCharacterChange = (e) => {
-        let character = e.target.value
-        dispatch(setCharacter(character))
+    const handleCharacterChange = (player, id) => {
+        dispatch(setCharacter(player.name))
+        setCurrentCharacter(player.name)
+        setIsCharacterDropdownOpen(false)
     }
 
     useEffect(() => {
@@ -49,57 +63,75 @@ const Experience = () => {
     }, [applicant])
 
     return (
-        <div>
-            <div>
-                <h2><img alt="Knight" />Redberry Knight Cup</h2>
+        <div className="Wrapper">
+            <div className='LeftSide ChessImageExperience'>
+                <h2 className="LeftHeader">
+                    <span className="LeftHeaderContent Nunito">
+                        <img className="LeftHeaderLogo" src={KnightLogo} alt="Knight" />Redberry Knight Cup
+                    </span>
+                </h2>
 
                 <br />
 
-                <h3>
+                <h3 className="LeftSideQuote Nunito">
                     "MANY HAVE BECOME CHESS MASTERS, <br />
                     NO ONE HAS BECOME THE MASTER OF CHESS."
-                    <br />
-                    - SIEGBERT TARRASCH
+                    <br /> <br />
+                    <span className={`LeftSideQuoteAuthor ${Styles.Author}`}>- SIEGBERT TARRASCH</span>
                 </h3>
-
-                <img alt="Chess" />
             </div>
 
 
-            <div>
-                <h4>Start Creating Your Account</h4>
-                <hr />
+            <div className='RightSide RightSideMargin OpenSans'>
+                <RightHeader />
 
-                <h2>Chess experience</h2>
-                <h6>This Is Basic Information Fields</h6>
+                <h2 className='RightSideTitle'>Chess experience</h2>
+                <h6 className='RightSideAbout'>This Is Basic Information Fields</h6>
 
                 <br />
-                <select onChange={(e) => handleKnowledgeChange(e)} name="knowledge" id="knowledge">
-                    <option disabled selected value>Level of knowledge</option>
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="professional">Professional</option>
-                </select>
+
+                <div className="DropdownSelectWrapper">
+
+
+                    <select className="Dropdown" onChange={(e) => handleKnowledgeChange(e)} name="knowledge" id="knowledge">
+                        <option disabled selected value>Level of knowledge</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="normal">Intermediate</option>
+                        <option value="professional">Professional</option>
+                    </select>
+
+                    <br />
+
+                    <div className="selectField">
+                        <p onClick={() => setIsCharacterDropdownOpen(!isCharacterDropdownOpen)} className='ChooseCharacter'>{currentCharacter}</p>
+
+                        <ul style={isCharacterDropdownOpen ? { display: 'flex' } : {}} className="players">
+                            <p className='TotalCount'>(Total 4)</p>
+                            {players && players.map((player, id) => (
+                                <li onClick={() => handleCharacterChange(player, id)} className='player' key={id}>
+                                    <p className='PlayerName'>{player.name}</p>
+                                    <img src={`https://chess-tournament-api.devtest.ge${player.image}`} />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                </div>
+
                 <br />
 
-                <select onChange={(e) => handleCharacterChange(e)} name="character" id="character">
-                    <option disabled selected value>Choose your character</option>
-                    {players && players.map((player, id) => (
-                        <option key={id}>{player.name}</option>
-                    ))}
-                </select>
-                <br />
+                <div className='ParticipationWrapper'>
+                    <p className="ParticipationQuestion">Have you participated in the Redberry Championship?</p>
+                    <input checked={applicant.championshipParticipation} onClick={(e) => handleParticipationChange(e)} type="radio" value="yes" />
+                    <label>Yes</label>
 
-                <p>Have you participated in the Redberry Championship?</p>
-                <input checked={applicant.championshipParticipation} onClick={(e) => handleParticipationChange(e)} type="radio" value="yes" />
-                <label>Yes</label>
-
-                <input checked={applicant.championshipParticipation === false} onClick={(e) => handleParticipationChange(e)} type="radio" value="no" />
-                <label>No</label><br />
+                    <input checked={applicant.championshipParticipation === false} onClick={(e) => handleParticipationChange(e)} type="radio" value="no" />
+                    <label>No</label><br />
+                </div>
 
                 <Navigation />
             </div>
-        </div>
+        </div >
     )
 }
 
