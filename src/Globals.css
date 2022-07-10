@@ -1,17 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Open+Sans&display=swap');
 
+a,
+a:visited {
+  color: #212529;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+
+a:visited {
+  text-decoration: none;
+}
+
+
+a:hover {
+  text-decoration: none;
+}
+
+
+a:active {
+  text-decoration: none;
+}
+
 /* IMAGES  */
 .ChessImageMain {
   background: url('image/MainPage-Left.png');
   background-size: 100%;
-
 }
 
-.ChessImagePersonal {}
+.ChessImagePersonal {
+  background: url('image/PersonalInformation-Left.png');
+  background-size: cover;
+}
 
-.ChessImageExperience {}
+.ChessImageExperience {
+  background: url('image/Experience-Left.png');
+  background-size: 100%;
+}
 
-.ChessImageCompleted {}
+.ChessImageCompleted {
+  background: url('image/Completed-Left.png');
+  background-size: 100%;
+}
 
 
 .Nunito {
@@ -32,15 +64,168 @@
   width: 50%;
 }
 
-.LeftHeader {
-  background-color: #7025FB;
-  color: white;
+.RightSideMargin {
+  margin-left: 60px;
+}
+
+.LeftHeader,
+.RightHeader {
   height: 84px;
   margin: 0;
   display: flex;
   align-items: center;
 }
 
+.LeftHeader {
+  background-color: #7025FB;
+  color: white;
+  position: sticky;
+}
+
+.RightHeader {
+  border-bottom: 1px solid rgba(185, 180, 196, 0.3);
+}
+
 .LeftHeaderContent {
   margin-left: 60px;
+}
+
+.LeftHeaderLogo {
+  margin-right: 5.5px;
+  margin-bottom: -2.33px;
+}
+
+.LeftSideQuote {
+  margin-left: 120px;
+  margin-top: 140px;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 40px;
+}
+
+.LeftSideQuoteAuthor {
+  color: white;
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 100 !important;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.RightSideTitle {
+  margin-top: 60px;
+  letter-spacing: 0.35px;
+}
+
+.RightSideAbout {
+  margin-top: -12px;
+  color: #95939A;
+}
+
+.DropdownSelectWrapper {
+  display: flex;
+  width: 78.5%;
+  max-height: 4vh;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.Dropdown {
+  width: 47%;
+  border: 0;
+  outline: 0;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+}
+
+ul {
+  list-style: none;
+  padding: none;
+
+}
+
+.ChooseCharacter {
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+  position: absolute;
+  right: 350px;
+  bottom: 630.15px;
+  text-align: left;
+  width: 170px;
+}
+
+.players {
+  display: none;
+  margin-top: 50px;
+  flex-direction: column;
+  border: .5px solid #B9B4C34D;
+  margin-right: -50px;
+  position: absolute;
+  right: 200px;
+  bottom: 200px;
+  z-index: 99;
+  background-color: white;
+}
+
+.players .TotalCount {
+  color: #817D7D;
+  position: relative;
+  top: 20px;
+  margin-top: -2.5px;
+}
+
+
+.players p {
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: .1px;
+  margin-left: -25px;
+  display: inline;
+  position: relative;
+  top: 40px;
+
+}
+
+.PlayerName {
+  margin-right: 65px;
+}
+
+
+.player,
+.ChooseCharacter {
+  cursor: pointer;
+}
+
+.selectField img {
+  width: 95px;
+  height: 80px;
+  margin-left: 20px;
+  float: right;
+  margin-top: 15px;
+  margin-right: 12.5px;
+}
+
+
+.ParticipationWrapper {
+  margin-top: 60px;
+
+}
+
+.ParticipationQuestion {}
+
+.ParticipationWrapper input {}
+
+
+
+
+
+/* Right Header */
+
+
+.CompletedRightSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
