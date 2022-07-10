@@ -6,7 +6,9 @@ import styles from './Navigation.module.css'
 
 import RightArrow from '../image/RightArrow.png'
 
-const Navigation = () => {
+import Error from "./Error";
+
+const Navigation = ({ setPopError }) => {
     const isRouteOpen = useSelector(state => state.routesOpenClose)
 
     let { pathname } = useLocation();
@@ -34,11 +36,11 @@ const Navigation = () => {
             {
                 pathnameWithoutSlash === "experience" ?
                     <li className={styles.Next}>
-                        {isRouteOpen[nextWithoutSlash] ? <Link to={`${next}`}>Done</Link> : "Done"}
+                        {isRouteOpen[nextWithoutSlash] ? <Link to={`${next}`}>Done</Link> : <span onClick={() => setPopError(true)}>Done</span>}
                     </li>
                     :
                     <li className={styles.Next}>
-                        <span style={{ marginRight: '10px' }}>{isRouteOpen[nextWithoutSlash] ? <Link to={`${next}`}>Next</Link> : "Next"}</span>
+                        <span style={{ marginRight: '10px' }}>{isRouteOpen[nextWithoutSlash] ? <Link to={`${next}`}>Next</Link> : <span onClick={() => setPopError(true)}>Next</span>}</span>
                         <img className={styles.RightArrow} src={RightArrow} alt="Right Arrow" />
                     </li>
             }

@@ -21,7 +21,11 @@ const RightHeader = () => {
         <div className={`${styles.RightHeaderWrapper} OpenSans`}>
             <h4 className="RightHeader">
                 <span className="RightHeaderContent Nunito">
-                    Start Creating Your Account
+
+                    {routesOpenClose.experience === true
+                        ? "First Step is Done, Continue To Finish Onboarding"
+                        : "Start Creating Your Account"}
+
                 </span>
             </h4>
 

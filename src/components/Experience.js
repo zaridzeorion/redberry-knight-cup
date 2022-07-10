@@ -123,10 +123,10 @@ const Experience = () => {
                 <div className='ParticipationWrapper'>
                     <p className="ParticipationQuestion">Have you participated in the Redberry Championship?</p>
                     <input checked={applicant.championshipParticipation} onClick={(e) => handleParticipationChange(e)} type="radio" value="yes" />
-                    <label>Yes</label>
+                    <label style={{ marginLeft: '3.5px' }}>Yes</label>
 
-                    <input checked={applicant.championshipParticipation === false} onClick={(e) => handleParticipationChange(e)} type="radio" value="no" />
-                    <label>No</label><br />
+                    <input style={{ marginLeft: '10px' }} checked={applicant.championshipParticipation === false} onClick={(e) => handleParticipationChange(e)} type="radio" value="no" />
+                    <label style={{ marginLeft: '3.5px' }}>No</label><br />
                 </div>
 
                 <Navigation />

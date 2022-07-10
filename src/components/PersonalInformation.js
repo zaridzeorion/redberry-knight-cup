@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navigation from './Navigation'
 
 import { useSelector, useDispatch } from "react-redux";
@@ -17,9 +17,14 @@ import RightHeader from './RightHeader';
 
 import styles from './PersonalInformation.module.css'
 
+import Correct from '../image/Correct.png'
+import Error from './Error';
+
 const PersonalInformation = () => {
     const dispatch = useDispatch();
     const applicant = useSelector((state) => state.applicant);
+
+    const [popError, setPopError] = useState(false)
 
     const handleName = (e, dispatch) => {
         let name = e.target.value;
@@ -47,6 +52,11 @@ const PersonalInformation = () => {
         return re.test(email);
     };
 
+    const [nameError, setNameError] = useState('')
+    const [emailError, setEmailError] = useState('')
+    const [phoneError, setPhoneError] = useState('')
+    const [birthDateError, setBirthDateError] = useState('')
+
     const validatePage = (applicant, dispatch) => {
         const { name, email, phone, birthDate } = applicant;
 
@@ -59,7 +69,22 @@ const PersonalInformation = () => {
             birthDate
         ) {
             dispatch(openExperienceRoute());
+            return true;
         }
+
+        // error handling
+        if (name.length < 3) setNameError('Please enter more than 2 character')
+        else setNameError(null)
+
+        if (validateEmail(email) === false) setEmailError('Please enter valid (@redberry.ge) email address')
+        else setEmailError(null)
+
+        if (phone.length !== 9) setPhoneError('Please enter valid phone number')
+        else setPhoneError(null)
+
+        if (!birthDate) setBirthDateError('Please enter your birth date')
+        else setBirthDateError(null)
+
     };
 
     useEffect(() => {
@@ -88,6 +113,14 @@ const PersonalInformation = () => {
             </div>
 
             <div className='RightSide RightSideMargin OpenSans'>
+                <Error
+                    popError={popError}
+                    nameError={nameError}
+                    emailError={emailError}
+                    phoneError={phoneError}
+                    birthDateError={birthDateError}
+                />
+
                 <RightHeader />
 
                 <h2 className="RightSideTitle">Personal Information</h2>
@@ -95,41 +128,64 @@ const PersonalInformation = () => {
 
                 <div className={`OpenSans ${styles.InputWrapper}`}>
 
-                    <input
-                        style={applicant.name ? { background: 'rgb(242, 242, 242)' } : {}}
-                        className={styles.Input}
-                        onChange={(e) => handleName(e, dispatch)}
-                        value={applicant.name}
-                        type="text"
-                        placeholder="Name" /> <br />
 
-                    <input
-                        style={applicant.email ? { background: 'rgb(242, 242, 242)' } : {}}
-                        className={styles.Input}
-                        onChange={(e) => handleEmail(e, dispatch)}
-                        value={applicant.email}
-                        type="email"
-                        placeholder="Email address" /> <br />
+                    <div>
+                        <input
+                            style={applicant.name ? { background: 'rgb(246, 246, 246)' } : {}}
+                            className={styles.Input}
+                            onChange={(e) => handleName(e, dispatch)}
+                            value={applicant.name}
+                            type="text"
+                            placeholder="Name"
+                        />
+                        {!nameError ? <img className='CorrectInput' src={Correct} /> : null}
+                    </div>
+                    <br />
 
-                    <input
-                        style={applicant.phone ? { background: 'rgb(242, 242, 242)' } : {}}
-                        className={styles.Input}
-                        onChange={(e) => handlePhone(e, dispatch)}
-                        value={applicant.phone}
-                        type="number"
-                        placeholder="Phone number" /> <br />
+                    <div>
+                        <input
+                            style={applicant.email ? { background: 'rgb(246, 246, 246)' } : {}}
+                            className={styles.Input}
+                            onChange={(e) => handleEmail(e, dispatch)}
+                            value={applicant.email}
+                            type="email"
+                            placeholder="Email address"
+                        />
+                        {!emailError ? <img className='CorrectInput' src={Correct} /> : null}
+                    </div>
 
-                    <input
-                        style={applicant.birthDate ? { background: 'rgb(242, 242, 242)' } : {}}
-                        className={styles.Input}
-                        onChange={(e) => handleBirthDate(e, dispatch)}
-                        value={applicant.birthDate}
-                        type="date"
-                        placeholder="Date of birth" min="1900-01-01" max={today} />
+                    <br />
+
+                    <div>
+                        <input
+                            style={applicant.phone ? { background: 'rgb(246, 246, 246)' } : {}}
+                            className={styles.Input}
+                            onChange={(e) => handlePhone(e, dispatch)}
+                            value={applicant.phone}
+                            type="number"
+                            placeholder="Phone number"
+                        />
+                        {!phoneError ? <img className='CorrectInput' src={Correct} /> : null}
+                    </div>
+
+                    <br />
+
+                    <div>
+                        <input
+                            style={applicant.birthDate ? { background: 'rgb(246, 246, 246)' } : {}}
+                            className={`${styles.Input} ${styles.Date}`}
+                            onChange={(e) => handleBirthDate(e, dispatch)}
+                            value={applicant.birthDate}
+                            type="date"
+                            placeholder="Date of birth" min="1900-01-01" max={today}
+                        />
+
+                        {!birthDateError ? <img className='CorrectInput' src={Correct} /> : null}
+                    </div>
 
                 </div>
 
-                <Navigation />
+                <Navigation setPopError={setPopError} />
             </div>
         </div>
     )
