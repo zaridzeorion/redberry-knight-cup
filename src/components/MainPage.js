@@ -11,7 +11,7 @@ const MainPage = () => {
 
                 <h2 className="LeftHeader">
                     <span className="LeftHeaderContent Nunito">
-                        <img src={KnightLogo} alt="Knight" />Redberry Knight Cup
+                        <img className="LeftHeaderLogo" src={KnightLogo} alt="Knight" />Redberry Knight Cup
                     </span>
                 </h2>
             </div>
