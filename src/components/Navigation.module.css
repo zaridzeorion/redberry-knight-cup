@@ -1,0 +1,29 @@
+.Navigation {
+    margin-top: 200px;
+    width: 81.5%;
+
+    display: flex;
+    justify-content: space-between;
+
+    list-style: none;
+    padding: 0;
+}
+
+.Back,
+.Next {
+    border: 1px solid #212529;
+    border-radius: 8px;
+    padding: 13px 24px 13px 24px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+}
+
+.Next {
+    background-color: #212529;
+}
+
+.Next, .Next a {
+    color: white !important;
+}
