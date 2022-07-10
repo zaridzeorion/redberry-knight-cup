@@ -1,20 +1,22 @@
 import React from 'react'
 
+import KnightLogo from '../image/KnightLogo.png'
+import OnboardingLogo from '../image/Onboarding-Completed.png'
+
 const Completed = () => {
 
     return (
-        <div>
-            <div>
-                <h2><img alt="Knight" />Redberry Knight Cup</h2>
-
-                <br />
-
-                <img alt="Chess" />
+        <div className='Wrapper'>
+            <div className='LeftSide ChessImageCompleted'>
+                <h2 className="LeftHeader">
+                    <span className="LeftHeaderContent Nunito">
+                        <img className="LeftHeaderLogo" src={KnightLogo} alt="Knight" />Redberry Knight Cup
+                    </span>
+                </h2>
             </div>
 
-            <div>
-                <img alt="Rocket" /> <br />
-                <h2>Onboarding completed!</h2>
+            <div className='RightSide CompletedRightSide OpenSans'>
+                <img alt="Rocket" src={OnboardingLogo} />
             </div>
         </div>
     )
