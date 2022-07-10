@@ -3,8 +3,13 @@ import React from 'react'
 import KnightLogo from '../image/KnightLogo.png'
 import OnboardingLogo from '../image/Onboarding-Completed.png'
 
-const Completed = () => {
+import { useDispatch, useSelector } from 'react-redux'
 
+const Completed = () => {
+    const dispatch = useDispatch();
+    const applicant = useSelector((state) => state.applicant);
+
+    
     return (
         <div className='Wrapper'>
             <div className='LeftSide ChessImageCompleted'>

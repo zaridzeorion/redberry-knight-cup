@@ -87,7 +87,6 @@ const PersonalInformation = () => {
                 </h3>
             </div>
 
-
             <div className='RightSide RightSideMargin OpenSans'>
                 <RightHeader />
 
@@ -95,10 +94,39 @@ const PersonalInformation = () => {
                 <h6 className="RightSideAbout">This Is Basic Information Fields</h6>
 
                 <div className={`OpenSans ${styles.InputWrapper}`}>
-                    <input className={styles.Input} onChange={(e) => handleName(e, dispatch)} value={applicant.name} type="text" placeholder="Name" /> <br />
-                    <input className={styles.Input} onChange={(e) => handleEmail(e, dispatch)} value={applicant.email} type="email" placeholder="Email address" /> <br />
-                    <input className={styles.Input} onChange={(e) => handlePhone(e, dispatch)} value={applicant.phone} type="number" placeholder="Phone number" /> <br />
-                    <input className={styles.Input} onChange={(e) => handleBirthDate(e, dispatch)} value={applicant.birthDate} type="date" placeholder="Date of birth" min="1900-01-01" max={today} />
+
+                    <input
+                        style={applicant.name ? { background: 'rgb(242, 242, 242)' } : {}}
+                        className={styles.Input}
+                        onChange={(e) => handleName(e, dispatch)}
+                        value={applicant.name}
+                        type="text"
+                        placeholder="Name" /> <br />
+
+                    <input
+                        style={applicant.email ? { background: 'rgb(242, 242, 242)' } : {}}
+                        className={styles.Input}
+                        onChange={(e) => handleEmail(e, dispatch)}
+                        value={applicant.email}
+                        type="email"
+                        placeholder="Email address" /> <br />
+
+                    <input
+                        style={applicant.phone ? { background: 'rgb(242, 242, 242)' } : {}}
+                        className={styles.Input}
+                        onChange={(e) => handlePhone(e, dispatch)}
+                        value={applicant.phone}
+                        type="number"
+                        placeholder="Phone number" /> <br />
+
+                    <input
+                        style={applicant.birthDate ? { background: 'rgb(242, 242, 242)' } : {}}
+                        className={styles.Input}
+                        onChange={(e) => handleBirthDate(e, dispatch)}
+                        value={applicant.birthDate}
+                        type="date"
+                        placeholder="Date of birth" min="1900-01-01" max={today} />
+
                 </div>
 
                 <Navigation />

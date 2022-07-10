@@ -11,7 +11,11 @@
     background: rgba(255, 255, 255, 1e-06);
     width: 743px;
     padding: 8px 16px;
-    border:0;
+    border: 0;
     border-bottom: 1px solid rgba(185, 180, 196, 0.3);
     outline: none;
+}
+
+.Input:hover {
+    background: rgb(248, 248, 248);
 }
